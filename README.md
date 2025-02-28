@@ -2,7 +2,7 @@
 
 A collection of Python scripts for geocoding addresses from place names using multiple data sources.
 
-![Geocoder Tool Banner](https://raw.githubusercontent.com/username/geocoder-tool/main/banner.png)
+![Geocoder Tool Banner](https://raw.githubusercontent.com/sam2900/Geocoder/banner.png)
 
 ## Overview
 
