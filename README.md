@@ -23,8 +23,8 @@ This tool allows you to find addresses and coordinates for a list of place names
 
 1. Clone this repository:
    ```
-   git clone https://github.com/username/geocoder-tool.git
-   cd geocoder-tool
+   https://github.com/sam2900/Geocoder.git
+   cd Geocoder
    ```
 
 2. Install the required packages:
