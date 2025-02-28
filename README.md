@@ -23,7 +23,7 @@ This tool allows you to find addresses and coordinates for a list of place names
 
 1. Clone this repository:
    ```
-   https://github.com/sam2900/Geocoder.git
+   git clone https://github.com/sam2900/Geocoder.git
    cd Geocoder
    ```
 
