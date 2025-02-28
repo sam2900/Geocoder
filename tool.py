@@ -130,28 +130,35 @@ def execute_script(script_key):
     # Show loading animation
     loading_animation("Preparing to execute", 1)
     
+    print(f"\n{GREEN}╔═══════════ OUTPUT ═══════════╗{RESET}")
+    
     try:
-        # Execute the command
-        result = subprocess.run(command, shell=True, check=True, text=True, 
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # Execute the command with real-time output
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,
+            universal_newlines=True
+        )
         
-        # Display output
-        print(f"\n{GREEN}╔═══════════ OUTPUT ═══════════╗{RESET}")
-        print(result.stdout)
+        # Print output in real-time
+        for line in process.stdout:
+            print(line, end='')
         
-        if result.stderr:
-            print(f"\n{RED}╔═══════════ ERRORS ═══════════╗{RESET}")
-            print(result.stderr)
+        # Wait for the process to complete
+        exit_code = process.wait()
+        
+        if exit_code == 0:
+            print(f"\n{GREEN}[✓] Execution completed successfully.{RESET}")
+        else:
+            print(f"\n{RED}[✗] Execution failed with exit code {exit_code}.{RESET}")
             
-        print(f"\n{GREEN}[✓] Execution completed successfully.{RESET}")
-    except subprocess.CalledProcessError as e:
+    except Exception as e:
         print(f"\n{RED}[✗] Error executing script: {e}{RESET}")
-        if e.stdout:
-            print(f"\n{YELLOW}╔═══════════ OUTPUT ═══════════╗{RESET}")
-            print(e.stdout)
-        if e.stderr:
-            print(f"\n{RED}╔═══════════ ERRORS ═══════════╗{RESET}")
-            print(e.stderr)
+
 
 def main():
     """Main function to run the tool."""
